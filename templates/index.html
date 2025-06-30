@@ -1,0 +1,64 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>🎬 Movie Sentiment Checker</title>
+    <style>
+        body {
+            background-color: #141414;
+            color: #f5f5f1;
+            font-family: Arial, sans-serif;
+            padding: 2rem;
+            text-align: center;
+        }
+        textarea {
+            width: 60%;
+            height: 100px;
+            padding: 1rem;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            border: none;
+            resize: none;
+        }
+        input[type="submit"] {
+            padding: 0.7rem 2rem;
+            font-size: 1rem;
+            background-color: #e50914;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+        }
+        .result {
+            margin-top: 2rem;
+            padding: 1rem;
+            background-color: #222;
+            border-radius: 10px;
+            width: 60%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .result h2 {
+            color: #ffd700;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎥 Movie Review Sentiment Analyzer</h1>
+
+    <form method="POST" action="/predict">
+        <textarea name="text" placeholder="Type your movie review here..."></textarea><br>
+        <input type="submit" value="Predict Sentiment">
+    </form>
+
+    {% if prediction %}
+        <div class="result">
+            <h2>Prediction: {{ prediction }}</h2>
+            <p><strong>Original Text:</strong> {{ input_text }}</p>
+            <p><strong>Cleaned Text:</strong> {{ cleaned_text }}</p>
+        </div>
+    {% endif %}
+</body>
+</html>
